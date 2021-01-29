@@ -1,0 +1,5 @@
+---
+- version: v1alpha1
+  group: ckubeagent.io
+  kind: Ckubeagent
+  chart: helm-charts/cloudcasa

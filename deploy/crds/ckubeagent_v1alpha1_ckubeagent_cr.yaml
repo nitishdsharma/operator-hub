@@ -1,0 +1,60 @@
+apiVersion: ckubeagent.io/v1alpha1
+kind: Ckubeagent
+metadata:
+  name: example-ckubeagent
+spec:
+  # Default values copied from <project_dir>/helm-charts/cloudcasa/values.yaml
+  
+  affinity: {}
+  autoscaling:
+    enabled: false
+    maxReplicas: 1
+    minReplicas: 1
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+  cluster_id: "6013c48003d7efbf4e9ecb42"
+  fullnameOverride: ""
+  imagePullSecrets: []
+  kagent_image:
+    debug: false
+    pullPolicy: IfNotPresent
+    registry: docker.io
+    repository: catalogicsoftware/amds-kagent
+    tag: 0.1.0-rc.265
+  limit_kubeagent_cpu: 500m
+  limit_kubeagent_memory: 64Mi
+  limit_velero_cpu: 1
+  limit_velero_memory: 512Mi
+  nameOverride: ""
+  nodeSelector: {}
+  podAnnotations: {}
+  podSecurityContext: {}
+  request_kubeagent_cpu: 250m
+  request_kubeagent_memory: 32Mi
+  request_velero_cpu: 500m
+  request_velero_memory: 128Mi
+  resources: {}
+  securityContext: {}
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: ""
+  tolerations: []
+  velero_aws_plugin_image:
+    debug: false
+    pullPolicy: IfNotPresent
+    registry: docker.io
+    repository: velero/velero-plugin-for-aws
+    tag: v1.1.0
+  velero_csi_plugin_image:
+    debug: false
+    pullPolicy: IfNotPresent
+    registry: docker.io
+    repository: catalogicsoftware/velero-plugin-for-csi
+    tag: v0.1.2.1
+  velero_image:
+    debug: false
+    pullPolicy: IfNotPresent
+    registry: docker.io
+    repository: velero/velero
+    tag: v1.5.2

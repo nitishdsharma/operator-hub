@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ckubeagent-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ckubeagent-operator
+  template:
+    metadata:
+      labels:
+        name: ckubeagent-operator
+    spec:
+      serviceAccountName: ckubeagent-operator
+      containers:
+        - name: ckubeagent-operator
+          # Replace this with the built image name
+          #          image: REPLACE_IMAGE
+          image: nitsteve99/ckubeagent-operator:v0.1.0
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "ckubeagent-operator"
